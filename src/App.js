@@ -20,10 +20,18 @@ const BackgroundComponent = () => {
   )
 }
 
+const DraggableArea = () => {
+  return (
+    <div className={"draggable-area"}>
+    </div>
+  )
+}
+
 
 function App() {
   return (
     <React.Fragment>
+      <DraggableArea />
       <BackgroundComponent />
     </React.Fragment>
   );

@@ -30,13 +30,13 @@
     "extends": "react-app"
   },
   "author": {
-    "name": "Your Name",
-    "email": "your.email@domain.com",
-    "url": "https://your-website.com"
+    "name": "Patryk Dziarnecki",
+    "email": "patryk.dziarnecki@gmail.com",
+    "url": "https://patrykdziarnecki.com"
   },
   "build": {
-    "appId": "com.my-website.my-app",
-    "productName": "MyApp",
+    "appId": "com.patrykdziarnecki.breath-pacer",
+    "productName": "BreathPacer",
     "copyright": "Copyright © 2019 ${author}",
     "mac": {
       "category": "public.app-category.utilities"

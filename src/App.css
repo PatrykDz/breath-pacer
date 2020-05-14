@@ -26,6 +26,18 @@ body,
   height: 100%;
 }
 
+.draggable-area {
+  -webkit-app-region: drag;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+
+  width: 90%;
+  height: 90%;
+}
 
 .script-box {
   will-change: width, height, left, top;
