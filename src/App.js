@@ -1,25 +1,37 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { useSpring, animated } from 'react-spring'
+
+const BackgroundComponent = () => {
+  const props = useSpring({
+    from: { left: '0%', top: '0%', width: '0%', height: '0%', background: 'lightgreen' },
+    to: async next => {
+      while (1) {
+        await next({ left: '0%', top: '0%', width: '100%', height: '100%', background: 'lightblue' })
+        await next({ height: '50%', background: 'lightgreen' })
+        await next({ width: '50%', left: '50%', background: 'lightgoldenrodyellow' })
+        await next({ top: '0%', height: '100%', background: 'lightpink' })
+        await next({ top: '50%', height: '50%', background: 'lightsalmon' })
+        await next({ width: '100%', left: '0%', background: 'lightcoral' })
+        await next({ width: '50%', background: 'lightseagreen' })
+        await next({ top: '0%', height: '100%', background: 'lightskyblue' })
+        await next({ width: '100%', background: 'lightslategrey' })
+      }
+    },
+  })
+
+  return (
+    <animated.div className="script-box" style={props} />
+  )
+}
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <BackgroundComponent />
+    </React.Fragment>
   );
 }
 
