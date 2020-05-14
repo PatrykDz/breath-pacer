@@ -1,6 +1,7 @@
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
+const contextMenu = require('electron-context-menu');
 
 const path = require('path');
 const isDev = require('electron-is-dev');
@@ -18,6 +19,17 @@ function createWindow() {
 
   mainWindow.on('closed', () => mainWindow = null);
 }
+
+contextMenu({
+	prepend: (params, browserWindow) => [{
+    label: 'Breath-In Duration: 10s',
+    click: (menuItem, browserWindow, event) => {
+      console.log('Hello world');
+    }
+		// Only show it when right-clicking images
+		// visible: params.mediaType === 'image'
+	}]
+});
 
 app.on('ready', createWindow);
 

@@ -26,6 +26,12 @@ body,
   height: 100%;
 }
 
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .draggable-area {
   -webkit-app-region: drag;
 
