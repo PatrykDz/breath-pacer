@@ -5,9 +5,12 @@ import './App.css';
 import { useSpring, animated } from 'react-spring'
 import { setConstantValue } from 'typescript';
 
+const electron = window.require('electron');
+const ipc  = electron.ipcRenderer;
+
 const BackgroundComponent = (props) => {
   const animationProps = useSpring({
-    config: { duration: props.duration },
+    config: { duration: props.duration, delay: props.delay },
     from: { left: '0%', top: '100%', width: '100%', height: '0%', background: 'lightgreen' },
     to: async next => {
       while (1) {
@@ -30,23 +33,19 @@ const DraggableArea = () => {
 }
 
 function App() {
-  // const [duration, setDuration] = useState(5000);
-  // const handleWheel = (event) => {
-  //   if (event.nativeEvent.ctrlKey && event.nativeEvent.wheelDelta > 0) {
-  //     console.log('scroll up, current duration: ' + duration);
-  //     setDuration(duration + 1000);
-  //   } else if(event.nativeEvent.ctrlKey && event.nativeEvent.wheelDelta < 0) {
-  //     console.log('scroll down, current duration: ' + duration);
-  //     setDuration(duration - 1000);
-  //   }
-  // }
+  const [duration, setDuration] = useState(5000);
+  const [delay, setDelay] = useState(0);
 
-  const duration = 5000;
+  ipc.on('message', (event, data) => { // When the message is received...
+    console.log('Message received', event, data);
+    setDuration(data.duration | duration) // ... change the state of this React component
+    setDelay(data.delay | delay) // ... change the state of this React component
+  });
 
   return (
     <div className={"container"}>
       <DraggableArea />
-      <BackgroundComponent duration={duration} />
+      <BackgroundComponent duration={duration} delay={delay} />
     </div>
   );
 }
